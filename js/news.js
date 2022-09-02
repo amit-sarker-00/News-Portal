@@ -31,20 +31,30 @@ const showNews = (newsAll) => {
   newsContainer.textContent = "";
   newsAll.forEach((news) => {
     const newsDiv = document.createElement("div");
-    newsDiv.classList.add("col-12");
+    // newsDiv.classList.add("col-12");
     newsDiv.innerHTML = `
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
+        <img src="${news.image_url}" class="img-fluid rounded-start h-100"  alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
+          <h5 class="card-title">${news.title}</h5>
+          <p class="card-text custom">${news.details}</p>
+          <div class="d-flex justify-content-around">
+           <div class="d-flex gap-2">
+            <img style="width:100px;height:100px" class=" rounded-circle" src="${news.author.img}">
+              <h5 class="mt-4">${news.author.name}</h5>
+           </div>
+           <div class="mt-4">
+           <p class="d-flex gap-2"><i class="mt-1 fa-solid fa-eye"></i> ${news.total_view}</p>
+       </div>
+           <div class="mt-4">
+           <div class="btn btn-primary">Show Details</div>
+       </div>
       </div>
+      
     </div>
   </div>
       `;
