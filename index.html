@@ -71,16 +71,31 @@
         <div id="news-container" class="container">
           <div class="row"></div>
         </div>
-        <!-- Modal  -->
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="newsDetailModal"
+          tabindex="-1"
+          aria-labelledby="newsDetailModalLabel"
+          aria-hidden="true"
         >
-          Launch demo modal
-        </button>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="newsDetailModalLabel"></h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" id="modal-body">...</div>
+              <div class="modal-footer" id="modal-footer"></div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
     <!-- footer section  -->

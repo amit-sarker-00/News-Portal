@@ -31,7 +31,7 @@ const showNews = (newsAll) => {
   newsContainer.textContent = "";
   newsAll.forEach((news) => {
     const newsDiv = document.createElement("div");
-    // newsDiv.classList.add("col-12");
+
     newsDiv.innerHTML = `
       <div class="card mb-3">
     <div class="row g-0">
@@ -51,15 +51,33 @@ const showNews = (newsAll) => {
            <p class="d-flex gap-2"><i class="mt-1 fa-solid fa-eye"></i> ${news.total_view}</p>
        </div>
            <div class="mt-4">
-           <div class="btn btn-primary">Show Details</div>
+           <div onclick="loadNewsDetail('${news._id}')" class="btn btn-primary" data-bs-toggle="modal"
+           data-bs-target="#newsDetailModal">Show Details</div>
        </div>
-      </div>
-      
     </div>
   </div>
       `;
     newsContainer.appendChild(newsDiv);
   });
 };
+const loadNewsDetail = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/news/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayNewsDetails(data.data[0]))
+    .catch((error) => console.log(error));
+};
+const displayNewsDetails = (data) => {
+  const modalTitle = document.getElementById("newsDetailModalLabel");
+  modalTitle.innerText = data.title;
+  const modalBody = document.getElementById("modal-body");
+  modalBody.innerHTML = `
+  <img src="${data.image_url}"class="w-25 h-25">
+  `;
+  const modalFooter = document.getElementById("modal-footer");
+  modalFooter.innerText = data.details.slice(0, 150);
+};
+
+loadNewsDetail();
+
 loadNews();
 newCategory();
