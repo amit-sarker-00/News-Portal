@@ -26,6 +26,9 @@ const loadNews = (newsId) => {
   spinner(true);
 };
 const showNews = (newsAll) => {
+  newsAll.sort(function (a, b) {
+    return b.total_view - a.total_view;
+  });
   const newsContainer = document.getElementById("news-container");
   newsContainer.textContent = "";
   const notFound = document.getElementById("not-found");
