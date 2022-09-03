@@ -27,7 +27,24 @@ const loadNews = (newsId) => {
 };
 const showNews = (newsAll) => {
   const newsContainer = document.getElementById("news-container");
-  newsContainer.innerHTML = ``;
+  newsContainer.textContent = "";
+  const notFound = document.getElementById("not-found");
+  const found = document.getElementById("found");
+  found.textContent = "";
+  if (newsAll.length === 0) {
+    notFound.classList.remove("d-none");
+    found.classList.add("d-none");
+  } else {
+    notFound.classList.add("d-none");
+    found.classList.remove("d-none");
+    console.log(newsAll.length);
+    const p = document.createElement("p");
+    p.classList.add("fw-bold");
+    p.innerText = `
+    ${newsAll.length} News are Found
+    `;
+    found.appendChild(p);
+  }
   newsAll.forEach((news) => {
     const newsDiv = document.createElement("div");
 
